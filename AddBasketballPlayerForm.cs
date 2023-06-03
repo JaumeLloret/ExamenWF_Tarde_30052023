@@ -28,6 +28,15 @@ namespace ExamenWF_Tarde_30052023
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            if(IsTextBlank(nameTextBox.Text)
+                || IsTextBlank(positionComboBox.Text)
+                || IsTextBlank(teamTextBox.Text)
+                || !heightMaskedTextBox.MaskCompleted)
+            {
+                MessageBox.Show("Ningun campo puede estar en blanco");
+                return;
+            }
+            
             player.Name = nameTextBox.Text;
             player.Position = positionComboBox.Text;
             player.Team = teamTextBox.Text;
@@ -39,6 +48,9 @@ namespace ExamenWF_Tarde_30052023
 
         private void HeightMaskedTextBox_Validated(object sender, EventArgs e)
         {
+            if (heightMaskedTextBox.MaskCompleted)
+                return;
+
             double height = float.Parse(heightMaskedTextBox.Text);
 
             if (height > 2.40d || height < 1.50d)
@@ -52,5 +64,7 @@ namespace ExamenWF_Tarde_30052023
             heightMaskedTextBox.BackColor = Color.White;
             addButton.Enabled = true;
         }
+
+        private bool IsTextBlank(string text) => text.Length == 0;
     }
 }
