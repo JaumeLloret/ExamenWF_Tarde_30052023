@@ -48,7 +48,7 @@ namespace ExamenWF_Tarde_30052023
 
         private void HeightMaskedTextBox_Validated(object sender, EventArgs e)
         {
-            if (heightMaskedTextBox.MaskCompleted)
+            if (!heightMaskedTextBox.MaskCompleted)
                 return;
 
             double height = float.Parse(heightMaskedTextBox.Text);
